@@ -2,7 +2,7 @@
 
 **Data Visualization | Experience Design | Web Design**
 
-A digital platform to easily navigate NYC’s diverse museums.
+New York City is home to a diverse range of museums, spanning art, history, culture, and science. However, exploring these museums can be overwhelming for both locals and visitors. This project uses data from NYC OpenData to help residents and tourists easily find and explore museums across all five boroughs.
 
 [Visit Website](#)
 
@@ -14,27 +14,7 @@ Navigating the many museums across New York City’s five boroughs can be overwh
 
 ## Solution
 
-NYC Museum Guide consolidates museum details, providing a single access point for visitors to explore locations, exhibitions, hours, and events across the city.
-
----
-
-## Features
-
-- **Interactive Map**: View museum locations across all five boroughs.
-- **Exhibition Calendar**: Check current and upcoming exhibitions.
-- **Search Filters**: Find museums by type, location, or exhibition.
-- **Museum Information**: View hours, admission fees, and events.
-- **Responsive Design**: Access the platform across all devices.
-
----
-
-## Technologies Used
-
-- **HTML/CSS** for layout and styling.
-- **JavaScript** for interactivity.
-- **Google Maps API** for location mapping.
-- **D3.js** for data visualization.
-- **React.js** for dynamic user experience.
+NYC Museum Guide consolidates museum details, providing a single access point for exploring them across all five boroughs.
 
 ---
 
