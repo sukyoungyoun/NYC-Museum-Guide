@@ -1,0 +1,398 @@
+html, body {
+  margin-bottom: 500px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24pt;
+  background: linear-gradient(to right, rgb(255, 16, 155),rgb(255, 114, 189),rgb(170, 255, 43));/* Adjust gradient colors */
+  margin: 0;
+}
+body {
+  cursor: url('/Users/daisyyoun/Downloads/cursor.png'), auto;
+
+}
+
+.logo {
+  color:  rgb(171, 255, 16); /* Set the color to white */
+  font-size: 60px; /* Adjust the font size as needed */
+  margin-top: 20px; /* Adjust the margin-top as needed */
+  margin-left: 50px; /* Adjust the margin-right as needed */
+margin-bottom: 10px;
+float: left;
+}
+
+
+/* data vis */
+.axis line {
+stroke-width:1px;
+stroke: #ffffff;
+stroke-dasharray: 2px 2px;
+}
+#buttonsDiv{
+margin-top: 10px;
+  text-align: center;
+}
+
+.source{
+margin:10px auto;
+text-align: center;
+      font-size: 14px;
+}
+
+.source a:hover{
+color:white;
+}
+
+#table1{
+margin-left:auto; 
+margin-right:auto;
+text-align: center;
+}
+#dissapear{
+margin-left:auto; 
+margin-right:auto;
+font-size: 30px;
+padding-top: 10px;
+padding-bottom: 25px;
+line-height: 31px;
+text-align: center;
+}
+table {
+font-size: 25px;
+}
+.center{
+text-align: center;
+margin-left:auto; 
+margin-right:auto;
+}
+#my_dataviz{
+display: block;
+margin: auto;
+}
+svg{
+display: block;
+margin: auto;
+}
+td {
+padding: 5px;
+border-bottom: 1px solid  #ccc;;
+}
+td.update { 
+color: #ffffff;
+}
+
+td.enter {
+color:#ffffff;
+}
+
+td.exit, tr.exit td {
+color: red;
+}
+
+td.row-header {
+border-right: 1px solid  #ffffff;;
+font-weight: bold;
+}
+
+.axis text {
+font-size: 17px;
+color:  rgb(171, 255, 16);
+}
+
+.axis path {
+display: none;
+
+}
+.wifiGroup text {
+color: #aaa;
+font-size: 11px;
+}
+
+.tooltip {
+position: absolute;
+font-size: 15px;
+width:  auto;
+height: auto;
+padding:10px;
+border-radius: 20px;
+pointer-events: none;
+background-color: white;
+}
+/* text stylings */
+
+.title{
+margin-top: 150px;
+text-align: center;
+background: linear-gradient(to right, rgb(255, 120, 199),rgb(255, 255, 255),rgb(212, 255, 147));/* Adjust gradient colors */
+-webkit-background-clip: text; /* Ensures gradient is applied to the text in WebKit browsers */
+background-clip: text; /* Standard property */
+color: transparent; /* Make the text color transparent so the gradient is visible */
+font-size: 100%;
+padding: 100;
+}
+
+.title2{
+text-align: center;
+color: rgb(212, 255, 147);
+font-size: 10px;
+}
+
+h2{
+font-family: "Open Sans", sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 100%;
+line-height: 31px;
+text-align: center;
+}
+
+h3{
+text-align: center;
+color: #ffffff;
+}
+
+h4{
+font-size: 30px;
+color: #ffffff;
+}
+
+h5{
+font-size: 20px; 
+font-weight: normal;
+color:  rgb(212, 255, 147);
+}
+
+
+/* Style the custom marker with the ❋ symbol */
+.custom-icon {
+  font-size: 30px; /* Adjust size */
+  color: rgb(171, 255, 16); /* Set the desired color */
+  text-align: center;
+  font-family: 'Arial', sans-serif; /* Use any font you prefer */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a, a:visited{
+color: #ffffff;
+}
+/* navbar */
+
+.topnav{ 
+height: 100%;
+box-shadow: 1px 1px 1px 1px  rgb(171, 255, 16);
+}
+
+.topnav{
+overflow: hidden; 
+}
+
+.topnav a {
+margin-top: 20px;
+margin-right: 50px;
+margin-bottom: 20px;
+float: right;
+color:#ffffff;
+text-align: center;
+padding: 24px 26px;
+text-decoration: none;
+font-size: 20px;  
+}
+
+.topnav a:hover {
+background: xf;
+border-radius: 30px;
+}
+
+.topnav a.active {
+color:#ffffff;
+}
+
+/* landing page buttons */
+
+.button {
+border-radius: 35px;
+margin: 40px 40px;
+text-align: center;
+padding: 20px;
+width: 200px;
+height: 70px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+border: none;
+margin-top: 20px;
+font-size: 24px;
+}
+
+@keyframes slideInFromLeft{
+0%{
+  transform: translateX(-100%); 
+}
+100%{
+  transform: translateX(0);
+}
+}
+.button {
+  animation: 1s ease-out slideInFromLeft;
+}
+
+.button1:hover {
+background-color: rgb(255, 16, 155);
+color: rgb(171, 255, 16);
+}
+
+.button2:hover {
+background-color: rgb(171, 255, 16);
+color: rgb(255, 16, 155);
+}
+
+.buttons{
+text-align: center;
+margin-bottom: 300px; 
+}
+
+.button1 {
+box-shadow: 10px 10px 39px 0px rgba(0,0,0,0.22);
+background-color:  rgb(171, 255, 16);
+color: rgb(0, 0, 0);
+}
+
+.button2 {
+  background-color: rgb(255, 16, 155);
+  color: rgb(255, 255, 255);
+}
+
+button:active {
+outline: none;
+border: none;
+}
+
+/* about carousel */
+
+.carousel {
+width: 100%;
+}
+
+.carousel input {
+display: none;
+}
+
+.info {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+min-height: 850px;
+perspective: 1000px;
+overflow: hidden;
+}
+
+.info .item {
+position: absolute;
+box-sizing: border-box;
+background-color: white;
+padding: 30px;
+width: 500px;
+text-align: center;
+transition: transform 0.4s;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+cursor: pointer;
+font-size: 18px;
+border-radius: 55px;
+transition: transform .6s; /* Animation */
+}
+
+
+.item:hover{
+  transform: scale(1.03)
+}
+
+#i1:checked ~ .info label[for="i1"] {
+z-index: 4;
+}
+#i1:checked ~ .info label[for="i2"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+z-index: 3;
+}
+#i1:checked ~ .info label[for="i3"] {
+transform: translateX(600px) translateZ(-180px) rotateY(-25deg);
+z-index: 2;
+}
+#i1:checked ~ .info label[for="i4"] {
+transform: translateX(900px) translateZ(-270px) rotateY(-35deg);
+z-index: 1;
+}
+#i1:checked ~ .info label[for="i5"] {
+transform: translateX(1200px) translateZ(-360px) rotateY(-45deg);
+}
+
+#i2:checked ~ .info label[for="i1"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+}
+#i2:checked ~ .info label[for="i2"] {
+z-index: 3;
+}
+#i2:checked ~ .info label[for="i3"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+z-index: 2;
+}
+#i2:checked ~ .info label[for="i4"] {
+transform: translateX(600px) translateZ(-180px) rotateY(-25deg);
+z-index: 1;
+}
+#i2:checked ~ .info label[for="i5"] {
+transform: translateX(900px) translateZ(-270px) rotateY(-35deg);
+}
+
+#i3:checked ~ .info label[for="i1"] {
+transform: translateX(-600px) translateZ(-180px) rotateY(25deg);
+}
+#i3:checked ~ .info label[for="i2"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+}
+#i3:checked ~ .info label[for="i3"] {
+z-index: 3;
+}
+#i3:checked ~ .info label[for="i4"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+z-index: 2;
+}
+#i3:checked ~ .info label[for="i5"] {
+transform: translateX(600px) translateZ(-180px) rotateY(-25deg);
+}
+
+#i4:checked ~ .info label[for="i1"] {
+transform: translateX(-900px) translateZ(-270px) rotateY(35deg);
+}
+#i4:checked ~ .info label[for="i2"] {
+transform: translateX(-600px) translateZ(-180px) rotateY(25deg);
+}
+#i4:checked ~ .info label[for="i3"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+z-index: 2;
+}
+#i4:checked ~ .info label[for="i4"] {
+z-index: 3;
+}
+#i4:checked ~ .info label[for="i5"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+}
+
+#i5:checked ~ .info label[for="i1"] {
+transform: translateX(-1200px) translateZ(-360px) rotateY(45deg);
+}
+#i5:checked ~ .info label[for="i2"] {
+transform: translateX(-900px) translateZ(-270px) rotateY(35deg);
+z-index: 1;
+}
+#i5:checked ~ .info label[for="i3"] {
+transform: translateX(-600px) translateZ(-180px) rotateY(25deg);
+z-index: 2;
+}
+#i5:checked ~ .info label[for="i4"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+z-index: 3;
+}
+#i5:checked ~ .info label[for="i5"] {
+z-index: 4;
+}

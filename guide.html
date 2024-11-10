@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NYC Museum Guide</title>
+  <link rel="stylesheet" type="text/css" href="guide.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <style>
+    .filter button {
+      margin: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topnav">
+    <!-- ❋ as your logo -->
+    <span class="logo">❋</span>
+    <a href="about.html">About</a>
+    <a class="active" href="guide.html">Info</a>
+    <a href="map.html">Map</a>
+    <a href="index.html">Home</a>
+    <h1❋</h1>
+  </div>
+  <h2><b>Please select a borough from the options below to filter your results.</b> </h2>
+  <div class="filter">
+    <button onclick="filterByBorough('New York')">Manhattan</button>
+    <button onclick="filterByBorough('Brooklyn')">Brooklyn</button>
+    <button onclick="filterByBorough('Queens')">Queens</button>
+    <button onclick="filterByBorough('Bronx')">Bronx</button>
+    <button onclick="filterByBorough('Staten Island')">Staten Island</button>
+  </div>
+  <div id="output"></div>
+  <script>
+    // Define the CSV data
+    const csvData = `NAME,TEL,URL,ADDRESS,CITY
+Alexander Hamilton U.S. Custom House,(212) 514-3700,http://www.oldnycustomhouse.gov/,1 Bowling Grn,New York
+Alice Austen House Museum,(718) 816-4506,http://www.aliceausten.org/,2 Hylan Blvd,Staten Island
+American Academy of Arts and Letters,(212) 368-5900,http://www.artsandletters.org/,633 W. 155th St.,New York
+American Folk Art Museum,(212) 265-1040,http://www.folkartmuseum.org/,45 West 53rd Street,New York
+American Immigration History Center,(212) 363-3200,http://www.ellisisland.org/,Ellis Island,New York
+American Museum of Natural History,(212) 769-5100,http://www.amnh.org/,Central Park West at 79th Street,New York
+American Numismatic Society,(212) 571-4470,http://www.numismatics.org/,75 Varick St,New York
+Americas Society,(212) 249-8950,http://as.americas-society.org/,680 Park Ave.,New York
+Anne Frank Center USA,(212) 431-7993,http://www.annefrank.com/,38 Crosby Street,New York
+Asia Society,(212) 288-6400,http://www.asiasociety.org/,725 Park Avenue,New York
+Audubon Terrace,,http://www.washington-heights.us/history/archives/audubon_terrace_museum_group_102.html,Broadway at 155 Street,New York
+Bartow-Pell Mansion,(718) 885-1461,http://bartowpellmansionmuseum.org/index.php,895 Shore Road,Bronx
+Bowne House,(718) 359-0528,http://www.bownehouse.org/,37-01 Bowne Street,Queens
+Bronx Historical Society & Musem,(718) 881-8900,http://www.bronxhistoricalsociety.org/,3309 Bainbridge Ave,Bronx
+Bronx Museum of the Arts (BXMA),(718) 681-6000,http://www.bronxmuseum.org/,1040 Grand Concourse,Bronx
+Brooklyn Children's Museum,(718) 735-4400,http://www.brooklynkids.org/,145 Brooklyn Avenue,Brooklyn
+Brooklyn Historical Society,(718) 222-4111,http://www.brooklynhistory.org/default/index.html,128 Pierrepont Street,Brooklyn
+Brooklyn Museum,(718) 638-5000,http://www.brooklynmuseum.org/,200 Eastern Parkway,Brooklyn
+Chelsea Art Museum,(212) 255-0719,http://www.chelseaartmuseum.org/,556 West 22nd Street,New York
+Children's Museum of Manhattan,(212) 721-1234,http://www.cmom.org/,212 West 83rd Street,New York
+Children's Museum of the Arts,(212) 274-0986,http://cmany.org/intro.php?pn=home,182 Lafayette Street,New York
+Cloisters,(212) 923-3700,http://www.metmuseum.org/cloisters/,99 Margaret Corbin Drive,New York
+Coney Island Museum,(718) 372-5159,http://www.coneyisland.com/,1208 Surf Ave,Brooklyn
+"Cooper-Hewitt, National Design Museum",(212) 849-8400,http://www.cooperhewitt.org/,2 East 91st Street,New York
+Dahesh Museum,(212) 759-0606,http://www.daheshmuseum.org,580 Madison Avenue,New York
+Dia at the Hispanic Society,(845) 440-0100,http://www.diabeacon.org/,613 West 155th Street,New York
+Dia Art Foundation,(212) 989 5566,http://www.diacenter.org/,535 W 22nd Street,New York
+Discovery Times Square Exposition,(866) 987-9692,http://www.discoverytsx.com/nyc/,226 W 44th St,New York
+Drawing Center,(212) 219-2166,http://www.drawingcenter.org/about_visit.cfm,35 Wooster St.,New York
+Dyckman Farmhouse,(212) 304-9422,http://www.dyckmanfarmhouse.org/,4881 Broadway,New York
+East Village History Project,(212) 614-8702,http://leshp.org/,308 Bowery,New York
+El Museo del Barrio,(212) 831-7272,http://www.elmuseo.org/,1230 Fifth Ave,New York
+Ellis Island Museum,(212) 363-3200,http://www.ellisisland.org/,Ellis Island,New York
+Fraunces Tavern Museum,(212) 425-1778,http://www.frauncestavernmuseum.org/,54 Pearl Street,New York
+Frick Collection,(212) 288-0700,http://www.frick.org/,1 E. 70th Street,New York
+Garibaldi-Meucci Museum,(718) 442-1608,http://statenislandusa.com/pages/garibaldi.html,420 Tompkins Avenue,Staten Island
+Goethe-Institut New York,(212) 439-8700,http://www.goethe.de/ins/us/ney/deindex.htm,1014 Fifth Avenue,New York
+Gracie Mansion,(212)-570-4751,http://www.nyc.gov/html/om/html/gracie.html,89th Street at East End Avenue,New York
+Hall Of Fame For Great Americans,(718) 289-5161,http://www.bcc.cuny.edu/hallofFame/,Hall of Fame Terrace & Sedgwick Avenue,Bronx
+Harbor Defense Museum of Fort Hamilton,(718) 630-4349,http://www.harbordefensemuseum.com/,230 Sheridan Loop,Brooklyn
+Hispanic Society of America Museum,(212) 926-2234,http://www.hispanicsociety.org/,613 West 155th Street,New York
+Holocaust Museum & Studies Center,(718) 817-7700,http://www.holocauststudies.org/,75 W 205th St,Bronx
+Hudson Waterfront Museum and Showboat Barge,(718) 624-4719,http://www.waterfrontmuseum.org/,290 Conover St.,Brooklyn
+International Center of Photography,(212) 857-0000,http://www.icp.org/,1133 Avenue Of The Americas,New York
+Intrepid Sea-Air-Space Museum,(212) 245-0072,http://www.intrepidmuseum.org/,Pier 86 12th Ave. & 46th Street,New York
+Isamu Noguchi Garden Museum,(718) 204-7088,http://www.noguchi.org/,32-37 Vernon Boulevard,Queens
+Italian American Museum,(212) 965-9000,http://www.italianamericanmuseum.org/,155 Mulberry St.,New York
+Jackie Robinson Museum,(212) 290-8600,http://www.jackierobinson.org/,1 Hudson Square,New York
+Jacques Marchais Center Museum of Tibetan Art,(718) 987-3500,http://www.tibetanmuseum.org/,338 Lighthouse Avenue,Staten Island
+Jeffrey's Hook lighthouse (Little Red Lighthouse),(212) 304-2365,http://www.nycgovparks.org/sub_about/parks_divisions/historic_houses/hh_little_red_light.html,178th Street at the Hudson River,New York
+Jewish Museum,(212) 423-3200,http://www.thejewishmuseum.org/index.php,1109 Fifth Ave,New York
+John J. Harvey Fireboat,,http://www.fireboat.org/,Pier 66 at West 26th Street,New York
+King Manor Museum,(718) 206-0545,http://www.kingmanor.org/,152-01 Jamaica Avenue,Queens
+Kingsland Homestead,(718) 206-0545,http://www.queenshistoricalsociety.org/kingsland.html,143-35 37th Avenue,Queens
+LaGuardia and Wagner Archives,(718) 482-5065,http://www.laguardiawagnerarchive.lagcc.cuny.edu/defaultc.htm,31-10 Thomson Ave.,Queens
+Lee Young Hee Museum of Korean Culture,(212) 560-0722,http://www.lyhkm.org/,2 West 32nd Street,New York
+Lefferts Historic House,(718) 789-2822,http://www.prospectpark.org/visit/places/lefferts,Prospect Park Willink Entrance,Brooklyn
+Madame Tussauds Wax Museum,(800) 246-8872,http://www.madametussauds.com/NewYork/,234 W. 42nd Street,New York
+Merchant's House Museum,(212) 777-1089,http://www.merchantshouse.com/,29 East Fourth Street,New York
+Metropolitan Museum of Art (MET),(212) 535-7710,http://www.metmuseum.org/,1000 Fifth Avenue,New York
+Mexican Cultural Institute of New York,(212) 217-6422,http://www.lavitrina.com/,27 E. 39th St.,New York
+Morgan Library and Museum,(212) 685-0008,http://www.themorgan.org/home.asp,225 Madison Avenue,New York
+Morris-Jumel Mansion,(212) 923-8008,http://www.morrisjumel.org/,65 Jumel Terrace,New York
+Mount Vernon Hotel Museum & Garden,(212) 838-6878,http://www.mvhm.org/,421 East 61 Street,New York
+Municipal Art Society,(212) 935-3960,http://mas.org/,457 Madison Avenue,New York
+Museum for African Art,(718) 784-7700,http://www.africanart.org/,36-01 43rd Avenue,Queens
+Museum of American Finance,(212) 908-4110,http://www.moaf.org/index,48 Wall Street,New York
+Museum of American Illustration,(212) 838-2560,http://societyillustrators.org/museum/index.cms,128 E. 63d St.,New York
+Museum of Arts & Design (MAD),(212) 299-7777,http://www.madmuseum.org/,2 Columbus Circle,New York
+Museum of Biblical Art,(212) 408-1200,http://www.mobia.org/,1865 Broadway,New York
+Museum Of Chinese In America,(212) 619-4785,http://www.mocanyc.org/,215 Centre Street,New York
+Museum of Comic and Cartoon Art (MoCCA),(212) 254 3511,http://www.moccany.org/,594 Broadway,New York
+Museum of Contemporary African Diasporan Arts (MoCADA),(718) 230-0492,http://www.mocada.org/,80 Hanson Place,Brooklyn
+Museum of Jewish Heritage,(646) 437-4200,http://www.mjhnyc.org/index.htm,36 Battery Place,New York
+Museum of Modern Art (MoMA),(212) 708-9400,http://www.moma.org/,11 West 53rd Street,New York
+Museum of the City of New York,(212) 534-1672,http://www.mcny.org,1220 Fifth Avenue,New York
+Museum of the Moving Image,(718) 784-4520,http://www.movingimage.us/site/site.php,35 Avenue at 36 Street,Queens
+National Academy Museum,(212) 369-4880,https://nationalacademy.org/index.asp,1083 5th Avenue,New York
+National Lighthouse Museum,(718) 556-1681,http://statenislandusa.com/pages/lighthouse.html,1 Lighthouse Plaza,Staten Island
+National Museum of the American Indian,(212) 514-3700,http://www.nmai.si.edu/,1 Bowling Green,New York
+National September 11 Memorial & Museum at the World Trade Center,(212) 227-7722,http://www.911memorial.org/,1 Liberty Plaza,New York
+Neue Galerie New York,(212) 628-6200,http://www.neuegalerie.org/,1048 Fifth Avenue,New York
+New Museum of Contemporary Art,(212) 219-1222,http://www.newmuseum.org/,235 Bowery,New York
+New York City Fire Museum,(212) 691-1303,http://www.nycfiremuseum.org/,278 Spring Street,New York
+New York City Police Museum,(212) 480-3100,http://www.nycpolicemuseum.org/,100 Old Slip,New York
+New York Hall of Science,(718) 699-0005,http://www.nysci.org/,47-01 111th Street,Queens
+New York Historical Society,(212) 873-3400,https://www.nyhistory.org/web/,2 West 77th Street,New York
+New York Tolerance Center,(212) 697-1180,http://www.kintera.org/site/pp.asp?c=fwLYKnN8LzH&b=242506,50 E 42nd St,New York
+New York Transit Museum,(718) 694-4915,http://www.mta.info/mta/museum/,Boerum Pl. & Schermenhorn Street,Brooklyn
+Nicholas Roerich Museum,(212) 864-7752,http://www.roerich.org/,319 West 107 Street,New York
+Noble Maritime Collection,(718) 447-6490,http://www.noblemaritime.org/,1000 Richmond Terrace,Staten Island
+Old Stone House,(718) 768-3195,http://www.theoldstonehouse.org/,326 5th Avenue,Brooklyn
+P.S. 1 Contemporary Art Center,(718) 784-2084,http://www.ps1.org/,22-25 Jackson Ave.,Queens
+Paley Center For Media (formerly Museum Of Television & Radio),(212) 621-6800,http://www.paleycenter.org/,25 West 52 Street,New York
+Queens Art Museum - Bulova Corporate Center,(516) 624-1910,http://www.bdg.net/properties/1/,75-20 Astoria Blvd.,Jackson Heights
+Queens County Farm Museum,(718) 347-3276,http://www.queensfarm.org/,73-50 Little Neck Parkway,Queens
+Queens Museum of Art,(718) 592-9700,http://www.queensmuseum.org/,Queens Museum of Art,Queens
+Rose Center for Earth and Space (Hayden Planetarium),(212) 769-5100,http://www.haydenplanetarium.org/index.php,15 West 81st Street,New York
+Rose Museum at Carnegie Hall,(212) 903-9629,http://www.carnegiehall.org/textSite/the_basics/art_museum_archives.html,154 West 57th Street,New York
+Rubin Museum of Art,(212) 620-5000,http://www.rmanyc.org/,150 West 17th Street,New York
+Sandy Ground Historical Society,(718) 317-5796,http://statenislandusa.com/pages/sandy_ground.html,1538 Woodrow Road,Staten Island
+Scandinavia House: The Nordic Center in America,(212) 879-9779,http://www.scandinaviahouse.org/,58 Park Ave.,New York
+Schomburg Center for Research in Black Culture,(212) 491-2200,http://www.nypl.org/research/sc/sc.html,515 Malcolm X Boulevard,New York
+School of Visual Arts Museum,(212) 592-2145,http://www.schoolofvisualarts.edu/sa/index.jsp?sid0=201&page_id=482&event_id=865,209 E. 23rd St.,New York
+Seguine Mansion,(718) 667-6042,http://www.historichousetrust.org/item.php?i_id=38,440 Seguine Avenue,Staten Island
+Skyscraper Museum,(212) 968-1961,http://www.skyscraper.org/home.htm,39 Battery Place,New York
+Solomon R. Guggenheim Museum,(212) 423-3500,http://www.guggenheim.org/,1071 Fifth Avenue,New York
+Sony Wonder Technology Lab,(212) 833-8100,http://wondertechlab.sony.com/,550 Madison Ave,New York
+South Street Seaport Museum,(212) 748-8600,http://www.southstreetseaportmuseum.org/,12 Fulton Street,New York
+Staten Island Children's Museum,(718) 273-2060,http://www.statenislandkids.org/,1000 Richmond Terr.,Staten Island
+Staten Island Museum / Staten Island Institute of Arts & Sciences,(718) 727-1135,http://www.statenislandmuseum.org/,75 Stuyvesant Pl.,Staten Island
+Studio Museum in Harlem,(212) 864-4500,http://www.studiomuseum.org,144 West 125th Street,New York
+Tenement Museum,(212) 431-0233,http://www.tenement.org/,108 Orchard Street,New York
+"The Freakatorium, El Museo Loco",(212) 375-0475,http://www.freakatorium.com/,57 Clinton St.,New York
+The Jazz Museum in Harlem,(212) 348-8300,http://www.jazzmuseuminharlem.org/,104 E. 126th Street,New York
+The Jewish Children's Museum,(718) 467-0600,http://www.jcmonline.org/,792 Eastern Pkwy,Brooklyn
+The Museum at FIT,(212) 217-5800,http://www.fitnyc.edu/306.asp,7th Avenue at West 27th Street,New York
+Theodore Roosevelt Birthplace,(212) 260-1616,http://www.nps.gov/thrb/index.htm,28 East 20th Street,New York
+Ukrainian Museum,(212) 228-0110,http://www.ukrainianmuseum.org/,222 East 6th Street,New York
+Valentine-Varian House,(718) 881-8900,http://www.museumregister.com/US/NewYork/Bronx/ValentineVarianHouse/Info.html,3266 Bainbridge Ave.,Bronx
+Van Cortlandt House Museum,(718) 543-3344,http://www.vancortlandthouse.org/,VAN CRTLANDT MANSION,Bronx
+Wave Hill,(718) 549-3200,http://wavehill.org/visit/,West 249th Street & Independence Avenue,Bronx
+Whitney Museum of American Art,1 (800) WHITNEY,http://www.whitney.org/,945 Madison Ave.,New York
+Wyckoff Farmhouse Museum,(718) 629-5400,http://www.wyckoffassociation.org/,5816 Clarendon Ave,Brooklyn
+Leo Baeck Institute,(212) 744-6400,http://www.lbi.org/,15 W. 16th St.,New York
+American Sephardi Federation / Sephardic House,(212) 294-8350,http://www.americansephardifederation.org/,15 W. 16th St.,New York
+YIVO Institute for Jewish Research,(212) 246-6860,http://www.yivoinstitute.org/,15 W. 16th St.,New York
+American Jewish Historical Society,(212) 294-6160,http://www.ajhs.org/,15 W. 16th St.,New York
+Yeshiva University Museum,(212) 294-8330,http://www.yumuseum.org/,15 W. 16th St.,New York
+Center For Jewish History,(212) 294-8301,http://www.cjh.org,15 W. 16th St.,New York
+`;
+    // Split the CSV data into rows
+    const rows = csvData.trim().split('\n');
+
+    // Get the output element
+    const output = document.getElementById('output');
+
+    // Function to display museum information based on selected borough
+    function filterByBorough(borough) {
+      output.innerHTML = ''; // Clear previous output
+      rows.forEach(row => {
+        const rowData = row.split(',');
+        const city = rowData[4];
+        if (city.toLowerCase().includes(borough.toLowerCase())) {
+          displayMuseum(rowData);
+        }
+      });
+    }
+
+    // Function to display museum information
+    function displayMuseum(rowData) {
+        const html = `
+        <p><strong>Name:</strong> ${rowData[0]}</p>
+        <p><strong>Telephone:</strong> ${rowData[1]}</p>
+        <p><strong>URL:</strong> <a href="${rowData[2]}">${rowData[2]}</a></p>
+        <p><strong>Address:</strong> ${rowData[3]}</p>
+        <p><strong>City:</strong> ${rowData[4]}</p>
+        <hr>
+      `;
+      output.innerHTML += html;
+    }
+
+    // Function to reset the filter and display all museums
+    function resetFilter() {
+      output.innerHTML = ''; // Clear previous output
+      rows.forEach(row => {
+        const rowData = row.split(',');
+        displayMuseum(rowData);
+      });
+    }
+
+
+  </script>
+</body>
+</html>

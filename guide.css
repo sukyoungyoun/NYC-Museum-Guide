@@ -1,0 +1,455 @@
+html, body {
+  margin-bottom: 300px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 15pt;
+  background: linear-gradient(to right, rgb(255, 16, 155),rgb(170, 255, 43));/* Adjust gradient colors */
+  color:  #ffffff;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: linear-gradient(to right, rgb(255, 16, 155), rgb(255, 108, 194), rgb(185, 255, 79));
+  background-size: 200% 200%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo {
+  color:  rgb(171, 255, 16); /* Set the color to white */
+  font-size: 60px; /* Adjust the font size as needed */
+  margin-top: 20px; /* Adjust the margin-top as needed */
+  margin-left: 50px; /* Adjust the margin-right as needed */
+margin-bottom: 10px;
+float: left;
+}
+
+
+/* data vis */
+.axis line {
+stroke-width:1px;
+stroke: rgb(255, 255, 255);
+stroke-dasharray: 2px 2px;
+color:azure
+}
+#buttonsDiv{
+margin-top: 10px;
+  text-align: center;
+}
+
+.source{
+margin:10px auto;
+text-align: center;
+      font-size: 14px;
+}
+
+.source a:hover{
+color:white;
+}
+
+#table1{
+margin-left:auto; 
+margin: right 40px;;
+text-align: center;
+}
+#dissapear{
+margin-left:auto; 
+margin-right:auto;
+font-size: 30px;
+padding-top: 10px;
+padding-bottom: 25px;
+line-height: 31px;
+text-align: center;
+}
+table {
+font-size: 25px;
+padding:20px
+}
+.center{
+text-align: center;
+margin-left:auto; 
+margin-right:auto;
+}
+#my_dataviz{
+display: block;
+margin: auto;
+}
+svg{
+display: block;
+margin: auto;
+}
+td {
+padding: 5px;
+border-bottom: 1px solid  #ccc;;
+}
+td.update { 
+color: #ffffff;
+}
+
+
+td.enter {
+color:#ffffff;
+}
+
+td.exit, tr.exit td {
+color: red;
+}
+
+td.row-header {
+border-right: 1px solid  #ffffff;;
+font-weight: bold;
+}
+
+.axis text {
+font-size: 17px;
+color:  rgb(171, 255, 16);
+}
+
+.axis path {
+display: none;
+
+}
+.wifiGroup text {
+color: #aaa;
+font-size: 11px;
+}
+
+.tooltip {
+position: absolute;
+font-size: 15px;
+width:  auto;
+height: auto;
+padding:10px;
+border-radius: 20px;
+pointer-events: none;
+background-color: white;
+}
+/* text stylings */
+
+
+h2{
+font-family: "Open Sans", sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 100%;
+text-align: left;
+margin-left:30px
+}
+#output {
+  margin-left: 30px;  /* Adjust as needed */
+  margin-right: 30px;  /* Adjust as needed */
+}
+h3{
+text-align: center;
+color: #ffffff;
+
+}
+
+h4{
+font-size: 30px;
+color: #ffffff;
+}
+
+h5{
+font-size: 20px; 
+font-weight: normal;
+color: #ffffff;
+margin:40px
+}
+
+
+
+a, a:visited{
+color: #ffffff;
+}
+/* navbar */
+
+.topnav{ 
+height: 100%;
+box-shadow: 1px 1px 1px 1px  rgb(171, 255, 16);
+}
+
+.topnav{
+overflow: hidden; 
+}
+
+.topnav a {
+margin-top: 20px;
+margin-right: 50px;
+margin-bottom: 20px;
+float: right;
+color:#ffffff;
+text-align: center;
+padding: 24px 26px;
+text-decoration: none;
+font-size: 20px;  
+}
+
+.topnav a:hover {
+background: xf;
+border-radius: 30px;
+}
+
+.topnav a.active {
+color:#ffffff;
+}
+
+/* landing page buttons */
+
+.filter button {
+  margin: 10px;
+  margin-left: 30px;
+  border-radius: 20px;
+  border: none;
+  background-color: #7aff7f;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.filter button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.filter button:active {
+  transform: scale(0.95); /* Smaller on click */
+}
+
+.filter button:focus {
+  outline: 2px solid rgb(255, 16, 155); /* Highlight on focus */
+}
+
+
+
+.button1:hover {
+background-color: black;
+color: rgb(171, 255, 16);
+}
+
+.button2:hover {
+background-color: rgb(255, 255, 255);
+color: black;
+}
+
+.buttons{
+text-align: center;
+margin-bottom: 300px; 
+}
+
+
+button:active {
+outline: none;
+border: none;
+}
+
+/* about carousel */
+
+.carousel {
+width: 100%;
+}
+
+.carousel input {
+display: none;
+}
+
+.info {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+min-height: 850px;
+perspective: 1000px;
+overflow: hidden;
+}
+
+.info .item {
+position: absolute;
+box-sizing: border-box;
+background-color: white;
+padding: 60px;
+width: 500px;
+text-align: center;
+transition: transform 0.4s;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+cursor: pointer;
+font-size: 18px;
+border-radius: 55px;
+transition: transform .6s; /* Animation */
+}
+
+
+.item:hover{
+  transform: scale(1.03)
+}
+
+#i1:checked ~ .info label[for="i1"] {
+z-index: 4;
+}
+#i1:checked ~ .info label[for="i2"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+z-index: 3;
+}
+#i1:checked ~ .info label[for="i3"] {
+transform: translateX(600px) translateZ(-180px) rotateY(-25deg);
+z-index: 2;
+}
+#i1:checked ~ .info label[for="i4"] {
+transform: translateX(900px) translateZ(-270px) rotateY(-35deg);
+z-index: 1;
+}
+#i1:checked ~ .info label[for="i5"] {
+transform: translateX(1200px) translateZ(-360px) rotateY(-45deg);
+}
+
+#i2:checked ~ .info label[for="i1"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+}
+#i2:checked ~ .info label[for="i2"] {
+z-index: 3;
+}
+#i2:checked ~ .info label[for="i3"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+z-index: 2;
+}
+#i2:checked ~ .info label[for="i4"] {
+transform: translateX(600px) translateZ(-180px) rotateY(-25deg);
+z-index: 1;
+}
+#i2:checked ~ .info label[for="i5"] {
+transform: translateX(900px) translateZ(-270px) rotateY(-35deg);
+}
+
+#i3:checked ~ .info label[for="i1"] {
+transform: translateX(-600px) translateZ(-180px) rotateY(25deg);
+}
+#i3:checked ~ .info label[for="i2"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+}
+#i3:checked ~ .info label[for="i3"] {
+z-index: 3;
+}
+#i3:checked ~ .info label[for="i4"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+z-index: 2;
+}
+#i3:checked ~ .info label[for="i5"] {
+transform: translateX(600px) translateZ(-180px) rotateY(-25deg);
+}
+
+#i4:checked ~ .info label[for="i1"] {
+transform: translateX(-900px) translateZ(-270px) rotateY(35deg);
+}
+#i4:checked ~ .info label[for="i2"] {
+transform: translateX(-600px) translateZ(-180px) rotateY(25deg);
+}
+#i4:checked ~ .info label[for="i3"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+z-index: 2;
+}
+#i4:checked ~ .info label[for="i4"] {
+z-index: 3;
+}
+#i4:checked ~ .info label[for="i5"] {
+transform: translateX(300px) translateZ(-90px) rotateY(-15deg);
+}
+
+#i5:checked ~ .info label[for="i1"] {
+transform: translateX(-1200px) translateZ(-360px) rotateY(45deg);
+}
+#i5:checked ~ .info label[for="i2"] {
+transform: translateX(-900px) translateZ(-270px) rotateY(35deg);
+z-index: 1;
+}
+#i5:checked ~ .info label[for="i3"] {
+transform: translateX(-600px) translateZ(-180px) rotateY(25deg);
+z-index: 2;
+}
+#i5:checked ~ .info label[for="i4"] {
+transform: translateX(-300px) translateZ(-90px) rotateY(15deg);
+z-index: 3;
+}
+#i5:checked ~ .info label[for="i5"] {
+z-index: 4;
+}
+/* Add your responsive design CSS here */
+@media screen and (max-width: 600px) {
+  /* Adjustments for smaller screens */
+  body {
+      font-size: 10px; /* Adjust font size for better readability on smaller screens */
+  }
+  .topnav {
+      flex-direction: column; /* Display navigation links vertically */
+  }
+  .topnav a {
+      margin-bottom: 5px; /* Add some spacing between navigation links */
+  }
+/* Ensure table is responsive */
+#museumTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#museumTable th,
+#museumTable td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+#museumTable th {
+  background-color: #f2f2f2;
+}
+
+/* Hide table headers on small screens */
+@media screen and (max-width: 600px) {
+  #museumTable thead {
+      display: none;
+  }
+
+  #museumTable tbody,
+  #museumTable tr,
+  #museumTable td {
+      display: block;
+      width: 100%;
+  }
+
+  #museumTable td {
+      text-align: left;
+      border: none;
+      border-bottom: 1px solid #ddd;
+  }
+}
+
+}
+.filter button:nth-of-type(1) {
+  background-color: rgb(171, 255, 16); /* Manhattan */
+  color:rgb(255, 16, 155)
+
+}
+
+.filter button:nth-of-type(2) {
+  background-color: rgb(171, 255, 16); /* Brooklyn */
+  color:rgb(255, 16, 155)
+}
+
+.filter button:nth-of-type(3) {
+  background-color: rgb(171, 255, 16); /* Queens */
+  color:rgb(255, 16, 155)
+}
+
+.filter button:nth-of-type(4) {
+  background-color: rgb(171, 255, 16); /* Bronx */
+  color:rgb(255, 16, 155)
+}
+
+.filter button:nth-of-type(5) {
+  background-color: rgb(171, 255, 16); /* Staten Island */
+  color:rgb(255, 16, 155)
+}
